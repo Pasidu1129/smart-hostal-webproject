@@ -66,7 +66,7 @@ header('location:main.php');
     <div class="container">
 
         <h1>
-            _Welcome_ <br>
+            Welcome <br>
             Hostel Management System
         </h1>
 
