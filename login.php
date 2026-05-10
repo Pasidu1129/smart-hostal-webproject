@@ -4,7 +4,7 @@
         </head>
         <body>
             <form>
-               TG Number:<input type="text"  placeholder="TGxxxx"><br>
+               TG Number-:<input type="text"  placeholder="TGxxxx"><br>
                 Password:<input type="password" placeholder="........"><br>
                    Confirm Password:<input type="password" placeholder="........" ><br>
                     <input type="submit" name="submit" value="submit">
