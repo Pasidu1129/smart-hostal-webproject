@@ -4,7 +4,7 @@
 <html>
     <title>Student registration</title>
     <head>
-    <link rel="stylesheet" href="student_reg.css">
+    <link rel="stylesheet" href="css/student_reg.css">
     </head>
     <body>
         <h1> Student registration </h1>
