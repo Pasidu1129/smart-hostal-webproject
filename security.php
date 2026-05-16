@@ -1,0 +1,89 @@
+<?php
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Hostel - In/Out Management</title>
+    <style>
+        body{
+    margin: 0;
+    padding: 0;
+
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background: linear-gradient(135deg, #141e30, #243b55);
+
+    font-family: Arial, sans-serif;
+}
+
+h1{
+    color: white;
+
+    font-size: 50px;
+
+    margin-bottom: 40px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    text-shadow: 0px 0px 10px rgba(255,255,255,0.5);
+}
+
+form{
+
+    background: rgba(255,255,255,0.1);
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0px 0px 25px rgba(0,0,0,0.4);
+
+    text-align: center;
+}
+
+input[type="submit"]{
+
+    width: 280px;
+
+    padding: 15px;
+
+    margin: 12px 0;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #00c6ff;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.4s;
+}
+
+input[type="submit"]:hover{
+
+    background: white;
+
+    color: #243b55;
+
+    transform: scale(1.08);
+
+    box-shadow: 0px 0px 20px white;
+}
+    </style>
+</head>
+
+?>
