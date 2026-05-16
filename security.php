@@ -8,6 +8,37 @@ if (!$conn) {
     die("Connection Failed : " . mysqli_connect_error());
 }
 
+if (isset($_POST['save_out'])) {
+    $TG_no = $_POST['TG_no_out'];
+    $room = $_POST['room_out'];
+    $place = $_POST['place_out'];
+
+    $sql_out = "INSERT INTO outgoing (TG_no, room, place, Odate_time, Idate_time) 
+                VALUES ('$TG_no', '$room', '$place', NOW(), NULL)";
+
+    if (mysqli_query($conn, $sql_out)) {
+        echo "<script>alert('Student Outgoing Record Added Successfully!'); window.location.href=window.location.href;</script>";
+    } else {
+        echo "Error : " . mysqli_error($conn);
+    }
+}
+
+if (isset($_POST['save_in'])) {
+    $IOid = $_POST['record_id_in'];
+
+    $sql_in = "UPDATE outgoing SET Idate_time = NOW() WHERE IOid = '$IOid'";
+
+    if (mysqli_query($conn, $sql_in)) {
+        echo "<script>alert('Student Arrival Marked Successfully!'); window.location.href=window.location.href;</script>";
+    } else {
+        echo "Error : " . mysqli_error($conn);
+    }
+}
+
+$all_students = mysqli_query($conn, "SELECT TG_no, room FROM student");
+$outside_students = mysqli_query($conn, "SELECT IOid, TG_no, room, place, Odate_time FROM outgoing WHERE Idate_time IS NULL");
+?>
+
 !DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,4 +126,3 @@ input[type="submit"]:hover{
     </style>
 </head>
 
-?>
