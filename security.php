@@ -1,4 +1,13 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+$conn = mysqli_connect("localhost", "root", "", "smart_hostal");
+
+if (!$conn) {
+    die("Connection Failed : " . mysqli_connect_error());
+}
+
 !DOCTYPE html>
 <html lang="en">
 <head>
