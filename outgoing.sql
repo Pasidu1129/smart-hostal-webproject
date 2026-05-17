@@ -1,0 +1,17 @@
+CREATE TABLE outgoing (
+
+    IOid INT AUTO_INCREMENT PRIMARY KEY,
+
+    tgNo VARCHAR(20) NOT NULL,
+
+    roomNo VARCHAR(10) NOT NULL,
+
+    Odate_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    place VARCHAR(100) NOT NULL,
+
+    Idate_time DATETIME,
+
+    FOREIGN KEY (tgNo) REFERENCES student(tgNo)
+
+);
