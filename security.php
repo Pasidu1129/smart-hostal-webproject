@@ -124,3 +124,40 @@ $outside_students = mysqli_query($conn, "SELECT IOid, TG_no, room, place, Odate_
         </form>
     </div>
 
+<script>
+    function switchTab(panelId, button) {
+        document.getElementById('out-panel').classList.remove('active');
+        document.getElementById('in-panel').classList.remove('active');
+        
+        var buttons = document.getElementsByClassName('tab-btn');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
+        }
+        
+        document.getElementById(panelId).classList.add('active');
+        button.classList.add('active');
+    }
+
+    function setOutRoom(){
+        var tg = document.getElementById("TG_no_out");
+        var selectedOption = tg.options[tg.selectedIndex];
+        var room = selectedOption.getAttribute("data-room");
+        document.getElementById("room_out").value = room ? room : "";
+    }
+
+    function setInDetails(){
+        var tg = document.getElementById("record_id_in");
+        var selectedOption = tg.options[tg.selectedIndex];
+        
+        var room = selectedOption.getAttribute("data-room");
+        var place = selectedOption.getAttribute("data-place");
+        var otime = selectedOption.getAttribute("data-otime");
+        
+        document.getElementById("room_in").value = room ? room : "";
+        document.getElementById("place_in").value = place ? place : "";
+        document.getElementById("otime_in").value = otime ? otime : "";
+    }
+    </script>
+
+</body>
+</html>
