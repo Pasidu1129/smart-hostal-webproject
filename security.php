@@ -44,85 +44,83 @@ $outside_students = mysqli_query($conn, "SELECT IOid, TG_no, room, place, Odate_
 <head>
     <meta charset="UTF-8">
     <title>Smart Hostel - In/Out Management</title>
-    <style>
-        body{
-    margin: 0;
-    padding: 0;
+    <link rel="stylesheet" href="css/security.css">
 
-    height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    background: linear-gradient(135deg, #141e30, #243b55);
-
-    font-family: Arial, sans-serif;
-}
-
-h1{
-    color: white;
-
-    font-size: 50px;
-
-    margin-bottom: 40px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 2px;
-
-    text-shadow: 0px 0px 10px rgba(255,255,255,0.5);
-}
-
-form{
-
-    background: rgba(255,255,255,0.1);
-
-    padding: 40px;
-
-    border-radius: 20px;
-
-    backdrop-filter: blur(10px);
-
-    box-shadow: 0px 0px 25px rgba(0,0,0,0.4);
-
-    text-align: center;
-}
-
-input[type="submit"]{
-
-    width: 280px;
-
-    padding: 15px;
-
-    margin: 12px 0;
-
-    border: none;
-
-    border-radius: 30px;
-
-    background: #00c6ff;
-
-    color: white;
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-    transition: 0.4s;
-}
-
-input[type="submit"]:hover{
-
-    background: white;
-
-    color: #243b55;
-
-    transform: scale(1.08);
-
-    box-shadow: 0px 0px 20px white;
-}
-    </style>
 </head>
+<body>
+
+    <h1>Security</h1>
+    <div class="tab-container">
+        <h2>Student Going OUT / Coming IN</h2>
+    </div>
+
+    <div id="out-panel" class="form-box active">
+        <h3 style="color: white; margin-top:0; text-align:center;">Log Outgoing Movement</h3>
+        <form method="POST" action="">
+            <label>Select TG Number</label>
+            <select name="TG_no_out" id="TG_no_out" onchange="setOutRoom()" required>
+                <option value="">-- Select TG Number --</option>
+                <?php
+                if ($all_students && mysqli_num_rows($all_students) > 0) {
+                    while($row = mysqli_fetch_assoc($all_students)){
+                        echo "<option value='".$row['TG_no']."' data-room='".$row['room']."'>".$row['TG_no']."</option>";
+                    }
+                } else {
+                    echo "<option value=''>No students found in DB</option>";
+                }
+                ?>
+            </select>
+            
+            
+            <br><br>
+            <label>Room Number</label>
+            <input type="text" name="room_out" id="room_out" >
+
+            <br><br>
+            <label>Destination/Place</label>
+            <input type="text" name="place_out">
+
+            <br><br>
+            <button type="submit" name="save_out" class="btn-out">Log Exit (OUT)</button>
+            
+            
+
+        </form>
+    </div>
+
+    <div id="in-panel" class="form-box">
+        <br><br>
+        <h3 style="color: white; margin-top:0; text-align:center;">Log Incoming Arrival</h3>
+        <form method="POST" action="">
+            <label>Select TG Number (Currently Outside)</label>
+            <select name="record_id_in" id="record_id_in" onchange="setInDetails()" required>
+                <option value="">-- Select TG Number --</option>
+                <?php
+                if ($outside_students && mysqli_num_rows($outside_students) > 0) {
+                    while($row = mysqli_fetch_assoc($outside_students)){
+                        echo "<option value='".$row['IOid']."' data-room='".$row['room']."' data-place='".$row['place']."' data-otime='".$row['Odate_time']."'>".$row['TG_no']."</option>";
+                    }
+                } else {
+                    echo "<option value=''>No students are outside right now</option>";
+                }
+                ?>
+            </select>
+
+            <br><br>
+            <label>Room Number</label>
+            <input type="text" id="room_in" readonly placeholder="Auto-filled">
+
+            <br><br>
+            <label>Went To</label>
+            <input type="text" id="place_in" readonly placeholder="Auto-filled">
+
+            <br><br>
+            <label>Exit Time</label>
+            <input type="text" id="otime_in" readonly placeholder="Auto-filled">
+
+            <br><br>
+            <button type="submit" name="save_in" class="btn-in">Mark Returned (IN)</button>
+            
+        </form>
+    </div>
 
