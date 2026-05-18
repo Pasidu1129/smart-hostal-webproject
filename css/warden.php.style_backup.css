@@ -1,0 +1,17 @@
+/* Backup of new styles applied to warden.php */
+
+.dlg-wrap{display:inline-block; position:relative; margin-right:12px}
+.dialog{
+  position:absolute; top:42px; left:0; width:320px; background:rgba(10,20,30,0.92);
+  color:#fff; padding:18px; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.5);
+  opacity:0; transform:translateY(-8px) scale(0.99); visibility:hidden; pointer-events:none;
+  transition:opacity .22s cubic-bezier(.2,.9,.25,1), transform .22s cubic-bezier(.2,.9,.25,1);
+  border:1px solid rgba(255,255,255,0.03);
+}
+.dialog.show{opacity:1; transform:translateY(0) scale(1); visibility:visible; pointer-events:auto}
+.dialog input[type=text]{width:100%; padding:8px 10px; margin-bottom:8px; border-radius:6px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.03); color:#fff}
+.btn-save{display:inline-block; width:100%; padding:12px 16px; border-radius:28px; border:none; background:#06a6d6; color:#fff; font-weight:600; cursor:pointer}
+button#btnSub, button#btnSec{background:#ddd; border:0; padding:6px 10px; border-radius:4px; cursor:pointer}
+
+/* small responsive */
+@media(max-width:420px){ .dialog{width:260px} }
