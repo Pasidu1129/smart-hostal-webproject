@@ -1,0 +1,132 @@
+/* ===== warden.php ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    gap: 32px;
+    background: #0a0a0f;
+    font-family: 'Poppins', sans-serif;
+    color: #eef2f7;
+    text-align: center;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed; width: 440px; height: 440px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(52,211,153,0.3) 0%, transparent 70%);
+    top: -100px; right: -100px; filter: blur(90px);
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: fixed; width: 380px; height: 380px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.3) 0%, transparent 70%);
+    bottom: -90px; left: -80px; filter: blur(80px);
+    pointer-events: none;
+}
+
+h1 {
+    position: relative; z-index: 1;
+    font-size: 44px; font-weight: 800; text-transform: capitalize; letter-spacing: -1px;
+    background: linear-gradient(90deg, #34d399, #06b6d4, #7c3aed);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    animation: fadeDown 0.6s ease both;
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.actions {
+    position: relative; z-index: 1;
+    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 0.65s ease both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.dlg-wrap { display: inline-flex; position: relative; }
+
+button#btnSub, button#btnSec {
+    padding: 14px 28px;
+    font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.06);
+    color: #e2e8f0; cursor: pointer; min-width: 160px;
+    transition: background 0.3s, border-color 0.3s, transform 0.2s, box-shadow 0.3s, color 0.3s;
+}
+
+button#btnSub:hover, button#btnSec:hover {
+    background: linear-gradient(135deg, #34d399, #06b6d4);
+    border-color: transparent; color: #0a0a0f;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(52,211,153,0.4);
+}
+
+.dialog {
+    position: absolute; top: calc(100% + 10px); left: 50%;
+    transform: translateX(-50%) translateY(-8px) scale(0.97);
+    width: 300px;
+    background: rgba(10,10,20,0.95);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    z-index: 100;
+}
+
+.dialog.show {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.dialog input[type="text"] {
+    display: block; width: 100%;
+    padding: 11px 14px; margin-bottom: 10px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px; color: #f1f5f9;
+    font-family: 'Poppins', sans-serif; font-size: 14px; outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.dialog input[type="text"]:focus { border-color: #34d399; box-shadow: 0 0 0 3px rgba(52,211,153,0.2); }
+.dialog input::placeholder { color: rgba(255,255,255,0.3); }
+
+.btn-save {
+    display: block; width: 100%; padding: 13px;
+    border: none; border-radius: 50px;
+    background: linear-gradient(135deg, #34d399, #06b6d4);
+    color: #0a0a0f; font-family: 'Poppins', sans-serif;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    box-shadow: 0 4px 16px rgba(52,211,153,0.35);
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+}
+
+.btn-save:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(52,211,153,0.45); filter: brightness(1.07); }
+
+/* Fallback for older warden.php with plain submit buttons */
+input[type="submit"] {
+    display: block; padding: 15px 40px; width: 100%;
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 50px;
+    background: linear-gradient(135deg, #34d399, #06b6d4);
+    color: #0a0a0f; font-family: 'Poppins', sans-serif;
+    font-size: 15px; font-weight: 700; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(52,211,153,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+input[type="submit"]:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(52,211,153,0.5); }
+
+@media (max-width: 420px) { .dialog { width: 260px; } }

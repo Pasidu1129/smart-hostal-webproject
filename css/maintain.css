@@ -1,0 +1,178 @@
+/* ===== maintain.php ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    min-height: 100vh;
+    background: #0a0a0f;
+    font-family: 'Poppins', sans-serif;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 48px 20px 60px; position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed; width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 65%);
+    top: -180px; left: -180px; filter: blur(90px); pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: fixed; width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(236,72,153,0.15) 0%, transparent 65%);
+    bottom: -160px; right: -150px; filter: blur(90px); pointer-events: none;
+}
+
+h1 {
+    position: relative; z-index: 1;
+    font-size: 34px; font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px;
+    background: linear-gradient(90deg, #a78bfa, #ec4899, #fb923c);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 28px; text-align: center;
+}
+
+h2 { font-size: 17px; font-weight: 700; color: #a78bfa; margin-bottom: 18px; }
+
+.msg {
+    position: relative; z-index: 1;
+    color: #d0fae5; background: rgba(52,211,153,0.12);
+    border: 1px solid rgba(52,211,153,0.3);
+    padding: 12px 20px; border-radius: 12px;
+    margin-bottom: 20px; font-size: 14px; text-align: center;
+    max-width: 520px; width: 100%;
+}
+.msg.err { color: #fca5a5; background: rgba(248,113,113,0.12); border-color: rgba(248,113,113,0.3); }
+
+.card {
+    position: relative; z-index: 1;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    padding: 30px; border-radius: 22px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 0 50px rgba(124,58,237,0.12), 0 12px 40px rgba(0,0,0,0.4);
+    width: 100%; max-width: 520px; margin-bottom: 20px;
+    animation: fadeUp 0.55s ease both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+label { color: #94a3b8; display: block; margin-bottom: 6px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+input[type="text"], input[type="password"], textarea, select {
+    width: 100%; padding: 11px 15px;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; color: white;
+    font-family: 'Poppins', sans-serif; font-size: 14px; margin-bottom: 16px; outline: none;
+    transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+    border-color: #a78bfa; background: rgba(124,58,237,0.1); box-shadow: 0 0 0 3px rgba(124,58,237,0.18);
+}
+
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25); }
+select { cursor: pointer; } select option { background: #0f0f1a; color: white; }
+textarea { height: 90px; resize: vertical; }
+
+.room-display {
+    background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.35);
+    color: #a78bfa; padding: 11px 16px; border-radius: 12px;
+    margin-bottom: 16px; font-size: 14px; font-weight: 600;
+}
+
+.sub-block { display: none; overflow: hidden; animation: slideDown 0.2s ease; }
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.btn {
+    width: 100%; padding: 13px; border: none; border-radius: 50px;
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    color: white; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700;
+    cursor: pointer; letter-spacing: 0.4px;
+    box-shadow: 0 4px 24px rgba(124,58,237,0.4);
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(236,72,153,0.5); filter: brightness(1.1); }
+.btn-purple { background: linear-gradient(135deg, #6d28d9, #7c3aed); }
+
+.choice-btns { display: flex; gap: 12px; }
+.choice-btns form { flex: 1; background: none; border: none; border-radius: 0; padding: 0; backdrop-filter: none; box-shadow: none; animation: none; }
+.choice-btns form::before { display: none; }
+
+.anon-box {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(255,200,0,0.06); border: 1px solid rgba(255,200,0,0.25);
+    border-radius: 12px; padding: 12px 15px; margin-bottom: 18px; cursor: pointer;
+}
+.anon-box:hover { background: rgba(255,200,0,0.1); }
+.anon-box input[type="checkbox"] { width: 17px; height: 17px; margin: 0; accent-color: #fbbf24; flex-shrink: 0; }
+.anon-label { color: #fbbf24; font-size: 14px; font-weight: 700; }
+.anon-note  { color: rgba(251,191,36,0.55); font-size: 11px; margin-top: 2px; }
+
+.tabs {
+    display: flex; width: 100%; max-width: 520px;
+    border-radius: 14px; overflow: hidden; margin-bottom: 20px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: relative; z-index: 1;
+}
+
+.tab-btn {
+    flex: 1; padding: 13px; border: none;
+    background: transparent; color: #94a3b8;
+    font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.tab-btn.active { background: linear-gradient(135deg, #7c3aed, #ec4899); color: white; font-weight: 700; }
+.tab-btn:hover:not(.active) { background: rgba(255,255,255,0.07); color: white; }
+
+.tab-pane { display: none; width: 100%; max-width: 520px; }
+.tab-pane.active { display: block; }
+
+.c-card {
+    position: relative; z-index: 1;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px; padding: 16px 20px; margin-bottom: 12px; width: 100%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.c-card.fixed { opacity: 0.4; }
+
+.c-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+
+.badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+.badge-blue   { background: rgba(124,58,237,0.25); color: #c4b5fd; }
+.badge-yellow { background: rgba(251,191,36,0.15); color: #fbbf24; }
+.badge-common  { background: rgba(52,211,153,0.15); border: 1px solid rgba(52,211,153,0.3); color: #34d399; }
+.badge-special { background: rgba(167,139,250,0.15); border: 1px solid rgba(167,139,250,0.3); color: #a78bfa; }
+
+.c-text { color: #cbd5e1; font-size: 14px; margin: 8px 0; line-height: 1.6; }
+
+.c-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.date-text { color: #475569; font-size: 12px; }
+
+.pill-pending { background: rgba(251,191,36,0.12); color: #fbbf24; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.pill-fixed   { background: rgba(52,211,153,0.12); color: #34d399; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.no-c { color: #475569; text-align: center; padding: 24px; font-size: 14px; }
+
+.admin-wrap { position: relative; z-index: 1; width: 100%; max-width: 520px; }
+
+.stats-row { display: flex; gap: 14px; margin-bottom: 24px; }
+.stat-box { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 20px 16px; text-align: center; }
+.stat-num   { font-size: 30px; font-weight: 800; color: #a78bfa; }
+.stat-label { font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.6px; margin-top: 4px; }
+
+.btn-fix {
+    padding: 7px 16px; border: none; border-radius: 20px;
+    background: linear-gradient(135deg, #7c3aed, #ec4899); color: white;
+    font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer;
+    box-shadow: 0 2px 12px rgba(124,58,237,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-fix:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(236,72,153,0.5); }
+
+.back-link { position: relative; z-index: 1; display: inline-block; margin-top: 28px; color: #a78bfa; font-size: 14px; font-weight: 600; text-decoration: none; }
+.back-link:hover { color: #ec4899; }
