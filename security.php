@@ -2,12 +2,14 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+
 $conn = mysqli_connect("localhost", "root", "", "smart_hostal");
 
 if (!$conn) {
     die("Connection Failed : " . mysqli_connect_error());
 }
 
+ 
 if (isset($_POST['save_out'])) {
     $TG_no = $_POST['TG_no_out'];
     $room = $_POST['room_out'];
@@ -23,6 +25,7 @@ if (isset($_POST['save_out'])) {
     }
 }
 
+
 if (isset($_POST['save_in'])) {
     $IOid = $_POST['record_id_in'];
 
@@ -35,11 +38,11 @@ if (isset($_POST['save_in'])) {
     }
 }
 
-$all_students = mysqli_query($conn, "SELECT TG_no, room FROM student");
+$all_students = mysqli_query($conn, "SELECT TG_no, room FROM rooms");
 $outside_students = mysqli_query($conn, "SELECT IOid, TG_no, room, place, Odate_time FROM outgoing WHERE Idate_time IS NULL");
 ?>
 
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -124,7 +127,8 @@ $outside_students = mysqli_query($conn, "SELECT IOid, TG_no, room, place, Odate_
         </form>
     </div>
 
-<script>
+    <script>
+    
     function switchTab(panelId, button) {
         document.getElementById('out-panel').classList.remove('active');
         document.getElementById('in-panel').classList.remove('active');
@@ -161,3 +165,6 @@ $outside_students = mysqli_query($conn, "SELECT IOid, TG_no, room, place, Odate_
 
 </body>
 </html>
+
+
+
