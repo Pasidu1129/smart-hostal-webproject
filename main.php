@@ -1,7 +1,19 @@
 <?php
+<<<<<<< HEAD
 if (isset ( $_POST['log'] )) {
 header('location:login.php');
 }
+=======
+if (isset ( $_POST['str'] )) {
+header('location:student_reg.php');
+}
+if (isset ( $_POST['log'] )) {
+header('location:login.php');
+}
+if (isset ( $_POST['admin'] )) {
+header('location:admin.php');
+}
+>>>>>>> 088d32521ec7db16336a4fa7bedbb6d9dc83f517
 ?>
 <html>
 <head>
